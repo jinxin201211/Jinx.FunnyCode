@@ -1,0 +1,502 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MovieSearch</title>
+    <link href="~/Content/font-awesome.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Microsoft YaHei';
+        }
+
+        .movie-condition {
+            width: 100%;
+        }
+
+        .movie-list {
+            width: 100%;
+        }
+
+
+        .movie-item {
+            float: left;
+            /*display: inline-block;
+            font-size: 0px;
+            word-spacing: 0px;*/
+            margin: 0;
+            /*background-color: #CCCCCC;*/
+            width: 256px;
+            height: 384px;
+            transition: all 0.15s ease-in-out;
+            overflow: hidden;
+        }
+
+            .movie-item > .poster {
+                margin: 20px 20px 0px 20px;
+                height: 302px;
+                background-position: center;
+                background-size: cover;
+                border-radius: 6px;
+                transition: inherit;
+            }
+
+            .movie-item > .info {
+                margin: 20px 20px 0px 20px;
+                height: 42px;
+                text-align: center;
+                transition: inherit;
+            }
+
+                .movie-item > .info > .title {
+                    font-size: 16px;
+                }
+
+                .movie-item > .info > .year {
+                    font-size: 12px;
+                }
+
+                .movie-item > .info > .rating {
+                    font-size: 14px;
+                    color: #FFFFFF;
+                    padding: 0px 5px;
+                    border-radius: 4px;
+                    background-color: #43934B;
+                }
+
+            .movie-item > .cover {
+                display: block;
+                height: 374px;
+                width: 246px;
+                border-radius: 6px;
+                background-color: #000000;
+                margin-top: -768px;
+                margin-left: 5px;
+                transition: inherit;
+                font-size: 12px;
+                text-decoration: none;
+                color: #DDDDDD;
+            }
+
+                .movie-item > .cover > .title {
+                    width: 100%;
+                    text-align: center;
+                    font-size: 30px;
+                    font-weight: bold;
+                    padding-top: 60px;
+                }
+
+                .movie-item > .cover > .year {
+                    width: 100%;
+                    text-align: center;
+                    font-size: 30px;
+                    font-weight: bold;
+                    padding-top: 20px;
+                }
+
+                .movie-item > .cover > .rating {
+                    width: 100%;
+                    display: block;
+                    text-align: right;
+                    font-weight: bold;
+                    color: #43934B;
+                    padding-top: 20px;
+                    margin-left: -30px;
+                    margin-right: 30px;
+                }
+
+                    .movie-item > .cover > .rating > .rating-int {
+                        font-size: 40px;
+                    }
+
+                    .movie-item > .cover > .rating > .rating-dec {
+                        font-size: 20px;
+                    }
+
+            .movie-item:hover {
+                margin-top: -10px;
+                margin-bottom: 10px;
+            }
+
+                .movie-item:hover > .info {
+                    opacity: 0;
+                }
+
+                .movie-item:hover > .cover {
+                    background-color: rgba(0,0,0,0.75);
+                    box-shadow: 0 0 5px 1px rgba(255, 255, 255, .3);
+                    margin-top: -379px;
+                }
+
+        .movie-condition > div {
+            border-bottom: 1px solid #DDDDDD;
+            font-size: 0px;
+            padding: 10px 10px 0 10px;
+        }
+
+        .movie-condition .con-name {
+            display: inline-block;
+            font-size: 14px;
+            width: 120px;
+            /*margin-top: 0px;*/
+            /*margin-bottom: 10px;*/
+            vertical-align: top;
+        }
+
+        .movie-condition .con-content {
+            display: inline-block;
+            width: 1140px;
+            vertical-align: top;
+        }
+
+        .con-content.con-search > input {
+            padding: 5px 10px;
+            margin-bottom: 10px;
+            border: 1px solid #43934B;
+            border-radius: 0;
+            outline: none;
+            font-family: 'Microsoft YaHei';
+            font-size: 16px;
+        }
+
+        .con-content.country-list, .con-content.genre-list {
+            /*display: inline-block;*/
+        }
+
+            .con-content.country-list > span, .con-content.genre-list > span {
+                position: relative;
+                display: inline-block;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                padding-right: 30px;
+                padding-left: 10px;
+                border: 1px solid #43934B;
+                background-color: #F1F1F1;
+                cursor: pointer;
+                height: 25px;
+                font-size: 12px;
+                color: #000000;
+                line-height: 25px;
+                transition: 0.2s all ease;
+            }
+
+                .con-content.country-list > span::before, .con-content.genre-list > span::before {
+                    position: absolute;
+                    font-family: 'FontAwesome';
+                    color: #000000;
+                    content: "\f067";
+                    text-align: center;
+                    background-color: #F1F1F1;
+                    height: 25px;
+                    width: 25px;
+                    right: 0;
+                    transition: inherit;
+                }
+
+                .con-content.country-list > span.checked::before, .con-content.genre-list > span.checked::before {
+                    background-color: #43934B;
+                    content: "\f00d";
+                    color: #F1F1F1;
+                }
+
+        .con-content.order-list {
+            margin: 0;
+            padding: 0;
+            /*display: inline-block;*/
+            /*width: 1140px;*/
+            list-style: none;
+        }
+
+            .con-content.order-list > li {
+                position: relative;
+                display: inline-block;
+                margin-right: -5px;
+                margin-bottom: 10px;
+                padding-right: 25px;
+                padding-left: 10px;
+                border: 1px solid #43934B;
+                background-color: #F1F1F1;
+                cursor: pointer;
+                height: 25px;
+                font-size: 12px;
+                color: #000000;
+                line-height: 25px;
+                transition: 0.2s all ease;
+                z-index: 0;
+            }
+
+                .con-content.order-list > li::before {
+                    position: absolute;
+                    font-family: 'FontAwesome';
+                    color: #000000;
+                    content: "\f0d8";
+                    text-align: center;
+                    height: 25px;
+                    width: 25px;
+                    right: 0px;
+                    top: -3px;
+                    transition: inherit;
+                }
+
+                .con-content.order-list > li::after {
+                    position: absolute;
+                    font-family: 'FontAwesome';
+                    color: #000000;
+                    content: "\f0d7";
+                    text-align: center;
+                    height: 25px;
+                    width: 25px;
+                    right: 0;
+                    bottom: -3px;
+                    transition: inherit;
+                }
+
+                .con-content.order-list > li.down {
+                    background-color: #43934B;
+                    color: #F1F1F1;
+                    box-shadow: 0 0 4px 1px rgba(0, 0, 0, .33);
+                    z-index: 1;
+                }
+
+                    .con-content.order-list > li.down::after {
+                        color: #F1F1F1;
+                    }
+
+                    .con-content.order-list > li.down::before {
+                        color: #AAAAAA;
+                    }
+
+                .con-content.order-list > li.up {
+                    background-color: #43934B;
+                    color: #F1F1F1;
+                    box-shadow: 0 0 4px 1px rgba(0, 0, 0, .33);
+                    z-index: 1;
+                }
+
+                    .con-content.order-list > li.up::after {
+                        color: #AAAAAA;
+                    }
+
+                    .con-content.order-list > li.up::before {
+                        color: #F1F1F1;
+                    }
+    </style>
+    <script src="~/Scripts/jquery-3.2.1.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.con-content.country-list,.con-content.genre-list').children('span[class!=all]').on('click', function () {
+                if ($(this).hasClass('checked')) {
+                    $(this).removeClass('checked');
+                    if ($(this).parent().children('span.checked').length == 0) {
+                        $(this).parent().children('span.all').addClass('checked');
+                    }
+                }
+                else {
+                    $(this).parent().children('span.all').removeClass('checked');
+                    $(this).addClass('checked');
+                }
+            });
+            $('.con-content.country-list>span.all,.con-content.genre-list>span.all').on('click', function () {
+                //if ($(this).hasClass('checked')) {
+                //    //$(this).removeClass('checked');
+                //    $(this).parent().children('span[class!=all]').removeClass('checked');
+                //}
+                //else {
+                $(this).parent().children('span[class!=all]').removeClass('checked');
+                $(this).addClass('checked');
+                //}
+            });
+            $('.con-content.order-list > li').on('click', function () {
+                if ($(this).hasClass('down')) {
+                    $(this).removeClass('down');
+                    $(this).addClass('up');
+                }
+                else if ($(this).hasClass('up')) {
+                    $(this).removeClass('up');
+                }
+                else {
+                    $(this).parent().children('li').removeClass('down').removeClass('up');
+                    $(this).addClass('down');
+                }
+            });
+
+            //$('.movie-item').css('display', 'none');
+        });
+    </script>
+</head>
+<body>
+    <div style="width:1280px; margin: 20px auto; background-color: #F6F6F6;">
+        <div class="movie-condition" style="background-color: #F6F6F6;">
+            <div>
+                <div class="con-name">条件：</div>
+                <div class="con-content con-search">
+                    <input type="text" placeholder="搜索电影" />
+                </div>
+            </div>
+            <div>
+                <div class="con-name">制片国家/地区：</div>
+                <div class="con-content country-list">
+                    <span class="all checked">全部地区</span><span>中国大陆</span><span>美国</span><span>香港</span><span>台湾</span><span>日本</span><span>韩国</span><span>英国</span><span>法国</span><span>德国</span><span>意大利</span><span>俄罗斯</span><span>瑞士</span><span>澳大利亚</span><span>伊朗</span><span>印度</span><span>西班牙</span><span>巴西</span><span>丹麦</span><span>泰国</span><span>爱尔兰</span><span>越南</span>
+                </div>
+            </div>
+            <div>
+                <div class="con-name">类型：</div>
+                <div class="con-content genre-list">
+                    <span class="all checked">全部类型</span><span>剧情</span><span>悬疑</span><span>犯罪</span><span>惊悚</span><span>爱情</span><span>家庭</span><span>奇幻</span><span>冒险</span><span>战争</span><span>恐怖</span><span>喜剧</span><span>科幻</span><span>动作</span><span>青春</span><span>励志</span><span>文艺</span><span>黑色幽默</span><span>传记</span><span>情色</span><span>暴力</span><span>音乐</span><span>同志</span>
+                </div>
+            </div>
+            <div>
+                <div class="con-name">排序：</div>
+                <ul class="con-content order-list">
+                    <li>时间</li>
+                    <li>地点</li>
+                    <li>人物</li>
+                    <li>起因</li>
+                    <li>经过</li>
+                    <li>结果</li>
+                </ul>
+            </div>
+        </div>
+        <div class="movie-list" style="background-color: #F1F1F1; min-height:150px;">
+            <div class="movie-item">
+                <div class="poster" style="background-image:url('https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2507227732.webp')"></div>
+                <div class="info">
+                    <span class="title">芳华</span>
+                    <span class="year">(2017)</span>
+                    <span class="rating">7.8</span>
+                </div>
+                <a class="cover" href="#">
+                    <div class="rating"><span class="rating-int">7</span><span class="rating-dec">.8</span></div>
+                    <div class="title">芳华</div>
+                    <div class="year">2017</div>
+                </a>
+            </div>
+            <div class="movie-item">
+                <div class="poster" style="background-image:url('https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2507227732.webp')"></div>
+                <div class="info">
+                    <span class="title">芳华</span>
+                    <span class="year">(2017)</span>
+                    <span class="rating">7.8</span>
+                </div>
+                <div class="cover">
+                    <div class="rating"><span class="rating-int">7</span><span class="rating-dec">.8</span></div>
+                    <div class="title">芳华</div>
+                    <div class="year">2017</div>
+                </div>
+            </div>
+            <div class="movie-item">
+                <div class="poster" style="background-image:url('https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2507227732.webp')"></div>
+                <div class="info">
+                    <span class="title">芳华</span>
+                    <span class="year">(2017)</span>
+                    <span class="rating">7.8</span>
+                </div>
+                <div class="cover">
+                    <div class="rating"><span class="rating-int">7</span><span class="rating-dec">.8</span></div>
+                    <div class="title">芳华</div>
+                    <div class="year">2017</div>
+                </div>
+            </div>
+            <div class="movie-item">
+                <div class="poster" style="background-image:url('https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2507227732.webp')"></div>
+                <div class="info">
+                    <span class="title">芳华</span>
+                    <span class="year">(2017)</span>
+                    <span class="rating">7.8</span>
+                </div>
+                <div class="cover">
+                    <div class="rating"><span class="rating-int">7</span><span class="rating-dec">.8</span></div>
+                    <div class="title">芳华</div>
+                    <div class="year">2017</div>
+                </div>
+            </div>
+            <div class="movie-item">
+                <div class="poster" style="background-image:url('https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2507227732.webp')"></div>
+                <div class="info">
+                    <span class="title">芳华</span>
+                    <span class="year">(2017)</span>
+                    <span class="rating">7.8</span>
+                </div>
+                <div class="cover">
+                    <div class="rating"><span class="rating-int">7</span><span class="rating-dec">.8</span></div>
+                    <div class="title">芳华</div>
+                    <div class="year">2017</div>
+                </div>
+            </div>
+            <div class="movie-item">
+                <div class="poster" style="background-image:url('https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2507227732.webp')"></div>
+                <div class="info">
+                    <span class="title">芳华</span>
+                    <span class="year">(2017)</span>
+                    <span class="rating">7.8</span>
+                </div>
+                <div class="cover">
+                    <div class="rating"><span class="rating-int">7</span><span class="rating-dec">.8</span></div>
+                    <div class="title">芳华</div>
+                    <div class="year">2017</div>
+                </div>
+            </div>
+            <div class="movie-item">
+                <div class="poster" style="background-image:url('https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2507227732.webp')"></div>
+                <div class="info">
+                    <span class="title">芳华</span>
+                    <span class="year">(2017)</span>
+                    <span class="rating">7.8</span>
+                </div>
+                <div class="cover">
+                    <div class="rating"><span class="rating-int">7</span><span class="rating-dec">.8</span></div>
+                    <div class="title">芳华</div>
+                    <div class="year">2017</div>
+                </div>
+            </div>
+            <div class="movie-item">
+                <div class="poster" style="background-image:url('https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2507227732.webp')"></div>
+                <div class="info">
+                    <span class="title">芳华</span>
+                    <span class="year">(2017)</span>
+                    <span class="rating">7.8</span>
+                </div>
+                <div class="cover">
+                    <div class="rating"><span class="rating-int">7</span><span class="rating-dec">.8</span></div>
+                    <div class="title">芳华</div>
+                    <div class="year">2017</div>
+                </div>
+            </div>
+            <div class="movie-item">
+                <div class="poster" style="background-image:url('https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2507227732.webp')"></div>
+                <div class="info">
+                    <span class="title">芳华</span>
+                    <span class="year">(2017)</span>
+                    <span class="rating">7.8</span>
+                </div>
+                <div class="cover">
+                    <div class="rating"><span class="rating-int">7</span><span class="rating-dec">.8</span></div>
+                    <div class="title">芳华</div>
+                    <div class="year">2017</div>
+                </div>
+            </div>
+            <div class="movie-item">
+                <div class="poster" style="background-image:url('https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2507227732.webp')"></div>
+                <div class="info">
+                    <span class="title">芳华</span>
+                    <span class="year">(2017)</span>
+                    <span class="rating">7.8</span>
+                </div>
+                <div class="cover">
+                    <div class="rating"><span class="rating-int">7</span><span class="rating-dec">.8</span></div>
+                    <div class="title">芳华</div>
+                    <div class="year">2017</div>
+                </div>
+            </div>
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+</body>
+</html>

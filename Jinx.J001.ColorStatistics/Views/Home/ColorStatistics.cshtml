@@ -1,0 +1,31 @@
+﻿@model List<ColorStatistics.Controllers.ImageColor>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="col-xs-4">
+        <img src="@ViewBag.FilePath" />
+    </div>
+    <div class="col-xs-8">
+        <table style="width: 100%; text-align: center;">
+            <thead>
+                <tr>
+                    <td>颜色</td>
+                    <td>百分比</td>
+                    <td>数量</td>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.Count; i++)
+                {
+                    <tr>
+                        <td style="background-color:#@Model[i].Color; width: 30%;"></td>
+                        <td style="width:40%;">@Model[i].Percent</td>
+                        <td>@Model[i].Amount</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

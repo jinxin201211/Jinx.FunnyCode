@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="60f104fdaaca4f62a4a503bd8d689c6a" Name="Diagram1">
+        <EntityTypeShape EntityType="MovieWarehouseModel.Douban_Celeb_UpdateLog" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MovieWarehouseModel.Douban_Celebrity_ID" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MovieWarehouseModel.Douban_Celebrity_Info" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MovieWarehouseModel.Douban_Movie_Country" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MovieWarehouseModel.Douban_Movie_Genre" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MovieWarehouseModel.Douban_Movie_ID" Width="1.5" PointX="2.75" PointY="6.75" />
+        <EntityTypeShape EntityType="MovieWarehouseModel.Douban_Movie_Info" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MovieWarehouseModel.Douban_Movie_Popular" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MovieWarehouseModel.Douban_Movie_UpdateLog" Width="1.5" PointX="8.75" PointY="5.75" />
+        <EntityTypeShape EntityType="MovieWarehouseModel.Douban_People_Contact" Width="1.5" PointX="8.75" PointY="8.75" />
+        <EntityTypeShape EntityType="MovieWarehouseModel.Douban_People_ID" Width="1.5" PointX="10.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MovieWarehouseModel.Douban_Search_Celeb" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="MovieWarehouseModel.Movie_Mine" Width="1.5" PointX="2.75" PointY="10.75" />
+        <EntityTypeShape EntityType="MovieWarehouseModel.Movie_Store" Width="1.5" PointX="10.75" PointY="3.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

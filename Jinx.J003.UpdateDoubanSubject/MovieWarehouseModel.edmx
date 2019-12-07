@@ -1,0 +1,688 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MovieWarehouseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Douban_Celeb_UpdateLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CelebID" Type="varchar" MaxLength="50" />
+          <Property Name="Time" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Douban_Celebrity_ID">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Initialized" Type="bit" />
+          <Property Name="Read" Type="bit" />
+          <Property Name="FZF" Type="bit" />
+          <Property Name="ReadMovie" Type="bit" />
+          <Property Name="Movie" Type="varchar(max)" />
+          <Property Name="Split" Type="bit" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Name_Original" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Douban_Celebrity_Info">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Name_Original" Type="nvarchar" MaxLength="500" />
+          <Property Name="Image" Type="nvarchar" MaxLength="500" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="50" />
+          <Property Name="Constellation" Type="nvarchar" MaxLength="50" />
+          <Property Name="Day_Birth" Type="nvarchar" MaxLength="50" />
+          <Property Name="Day_Death" Type="nvarchar" MaxLength="50" />
+          <Property Name="Born_Place" Type="nvarchar" MaxLength="500" />
+          <Property Name="Profession" Type="nvarchar" MaxLength="500" />
+          <Property Name="Name_Aka" Type="nvarchar" MaxLength="500" />
+          <Property Name="Name_Aka_Original" Type="nvarchar" MaxLength="500" />
+          <Property Name="Family_Member" Type="nvarchar" MaxLength="500" />
+          <Property Name="IMDb" Type="varchar" MaxLength="50" />
+          <Property Name="Website" Type="nvarchar" MaxLength="500" />
+          <Property Name="Summary" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Douban_Movie_Country">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Country" Type="nvarchar" MaxLength="100" />
+          <Property Name="Count" Type="int" />
+        </EntityType>
+        <EntityType Name="Douban_Movie_Genre">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Genre" Type="nvarchar" MaxLength="100" />
+          <Property Name="Count" Type="int" />
+        </EntityType>
+        <EntityType Name="Douban_Movie_ID">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Initialized" Type="bit" />
+          <Property Name="Read" Type="bit" />
+          <Property Name="FZF" Type="bit" />
+          <Property Name="Rating_Count" Type="int" />
+          <Property Name="Directors" Type="nvarchar(max)" />
+          <Property Name="Writers" Type="nvarchar(max)" />
+          <Property Name="Casts" Type="nvarchar(max)" />
+          <Property Name="Split" Type="bit" />
+          <Property Name="Collection" Type="bit" />
+        </EntityType>
+        <EntityType Name="Douban_Movie_Info">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="Title_Original" Type="nvarchar" MaxLength="500" />
+          <Property Name="Title_Aka" Type="nvarchar" MaxLength="500" />
+          <Property Name="Year" Type="varchar" MaxLength="50" />
+          <Property Name="Image" Type="nvarchar" MaxLength="500" />
+          <Property Name="Directors" Type="nvarchar(max)" />
+          <Property Name="Writers" Type="nvarchar(max)" />
+          <Property Name="Casts" Type="nvarchar(max)" />
+          <Property Name="Genres" Type="nvarchar" MaxLength="500" />
+          <Property Name="Countries" Type="nvarchar" MaxLength="500" />
+          <Property Name="Website" Type="nvarchar" MaxLength="500" />
+          <Property Name="Languages" Type="nvarchar" MaxLength="500" />
+          <Property Name="Pubdates" Type="nvarchar" MaxLength="500" />
+          <Property Name="Durations" Type="nvarchar" MaxLength="500" />
+          <Property Name="IMDb" Type="nvarchar" MaxLength="50" />
+          <Property Name="Summary" Type="nvarchar(max)" />
+          <Property Name="Rating" Type="varchar" MaxLength="50" />
+          <Property Name="Rating_Count" Type="int" />
+          <Property Name="Star_5" Type="varchar" MaxLength="50" />
+          <Property Name="Star_4" Type="varchar" MaxLength="50" />
+          <Property Name="Star_3" Type="varchar" MaxLength="50" />
+          <Property Name="Star_2" Type="varchar" MaxLength="50" />
+          <Property Name="Star_1" Type="varchar" MaxLength="50" />
+          <Property Name="Seasons_Count" Type="varchar" MaxLength="50" />
+          <Property Name="Current_Season" Type="varchar" MaxLength="50" />
+          <Property Name="Episodes_Count" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Douban_Movie_Popular">
+          <Key>
+            <PropertyRef Name="PID" />
+          </Key>
+          <Property Name="PID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
+          <Property Name="Url" Type="nvarchar" MaxLength="100" />
+          <Property Name="Rate" Type="nvarchar" MaxLength="10" />
+          <Property Name="Cover" Type="nvarchar" MaxLength="200" />
+          <Property Name="Cover_X" Type="int" />
+          <Property Name="Cover_Y" Type="int" />
+          <Property Name="Playable" Type="bit" />
+          <Property Name="Is_New" Type="bit" />
+          <Property Name="Order" Type="int" />
+          <Property Name="Time" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Douban_Movie_UpdateLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MovieID" Type="varchar" MaxLength="50" />
+          <Property Name="Time" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Douban_People_Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PeopleID" Type="varchar" MaxLength="50" />
+          <Property Name="ContactID" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Douban_People_ID">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Contacted" Type="bit" Nullable="false" />
+          <Property Name="RevContacted" Type="bit" Nullable="false" />
+          <Property Name="FZF" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Douban_Search_Celeb">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Keyword" Type="nvarchar" MaxLength="200" />
+          <Property Name="Douban" Type="nvarchar" MaxLength="50" />
+          <Property Name="Read" Type="bit" />
+        </EntityType>
+        <EntityType Name="Movie_Mine">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tag" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rating" Type="nvarchar" MaxLength="50" />
+          <Property Name="Order" Type="int" />
+        </EntityType>
+        <EntityType Name="Movie_Store">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="SubjectID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="FileName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Size" Type="float" />
+          <Property Name="Drive" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="P_SplitPagesQuery" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="TablesName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="PK" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="StrSort" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="SortType" Type="int" Mode="In" />
+          <Parameter Name="StrWhere" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="Fields" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="PageCurrent" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="PageCount" Type="int" Mode="InOut" />
+          <Parameter Name="RecordCount" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="PROC_Douban_Movie_Pager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StrWhere" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="StrSort" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="SortType" Type="int" Mode="In" />
+          <Parameter Name="Fields" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="PageCurrent" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="PageCount" Type="int" Mode="InOut" />
+          <Parameter Name="RecordCount" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="PROC_Mine_Movie_Pager" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="StrWhere" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="StrSort" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="SortType" Type="int" Mode="In" />
+          <Parameter Name="Fields" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="PageCurrent" Type="int" Mode="In" />
+          <Parameter Name="PageSize" Type="int" Mode="In" />
+          <Parameter Name="PageCount" Type="int" Mode="InOut" />
+          <Parameter Name="RecordCount" Type="int" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="MovieWarehouseModelStoreContainer">
+          <EntitySet Name="Douban_Celeb_UpdateLog" EntityType="Self.Douban_Celeb_UpdateLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Douban_Celebrity_ID" EntityType="Self.Douban_Celebrity_ID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Douban_Celebrity_Info" EntityType="Self.Douban_Celebrity_Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Douban_Movie_Country" EntityType="Self.Douban_Movie_Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Douban_Movie_Genre" EntityType="Self.Douban_Movie_Genre" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Douban_Movie_ID" EntityType="Self.Douban_Movie_ID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Douban_Movie_Info" EntityType="Self.Douban_Movie_Info" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Douban_Movie_Popular" EntityType="Self.Douban_Movie_Popular" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Douban_Movie_UpdateLog" EntityType="Self.Douban_Movie_UpdateLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Douban_People_Contact" EntityType="Self.Douban_People_Contact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Douban_People_ID" EntityType="Self.Douban_People_ID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Douban_Search_Celeb" EntityType="Self.Douban_Search_Celeb" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movie_Mine" EntityType="Self.Movie_Mine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Movie_Store" EntityType="Self.Movie_Store" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MovieWarehouseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="MovieWarehouseEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="P_SplitPagesQuery">
+            <Parameter Name="TablesName" Mode="In" Type="String" />
+            <Parameter Name="PK" Mode="In" Type="String" />
+            <Parameter Name="StrSort" Mode="In" Type="String" />
+            <Parameter Name="SortType" Mode="In" Type="Int32" />
+            <Parameter Name="StrWhere" Mode="In" Type="String" />
+            <Parameter Name="Fields" Mode="In" Type="String" />
+            <Parameter Name="PageCurrent" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="PageCount" Mode="InOut" Type="Int32" />
+            <Parameter Name="RecordCount" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_Douban_Movie_Pager">
+            <Parameter Name="StrWhere" Mode="In" Type="String" />
+            <Parameter Name="StrSort" Mode="In" Type="String" />
+            <Parameter Name="SortType" Mode="In" Type="Int32" />
+            <Parameter Name="Fields" Mode="In" Type="String" />
+            <Parameter Name="PageCurrent" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="PageCount" Mode="InOut" Type="Int32" />
+            <Parameter Name="RecordCount" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="PROC_Mine_Movie_Pager">
+            <Parameter Name="StrWhere" Mode="In" Type="String" />
+            <Parameter Name="StrSort" Mode="In" Type="String" />
+            <Parameter Name="SortType" Mode="In" Type="Int32" />
+            <Parameter Name="Fields" Mode="In" Type="String" />
+            <Parameter Name="PageCurrent" Mode="In" Type="Int32" />
+            <Parameter Name="PageSize" Mode="In" Type="Int32" />
+            <Parameter Name="PageCount" Mode="InOut" Type="Int32" />
+            <Parameter Name="RecordCount" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Douban_Celeb_UpdateLog" EntityType="MovieWarehouseModel.Douban_Celeb_UpdateLog" />
+          <EntitySet Name="Douban_Celebrity_ID" EntityType="MovieWarehouseModel.Douban_Celebrity_ID" />
+          <EntitySet Name="Douban_Celebrity_Info" EntityType="MovieWarehouseModel.Douban_Celebrity_Info" />
+          <EntitySet Name="Douban_Movie_Country" EntityType="MovieWarehouseModel.Douban_Movie_Country" />
+          <EntitySet Name="Douban_Movie_Genre" EntityType="MovieWarehouseModel.Douban_Movie_Genre" />
+          <EntitySet Name="Douban_Movie_ID" EntityType="MovieWarehouseModel.Douban_Movie_ID" />
+          <EntitySet Name="Douban_Movie_Info" EntityType="MovieWarehouseModel.Douban_Movie_Info" />
+          <EntitySet Name="Douban_Movie_Popular" EntityType="MovieWarehouseModel.Douban_Movie_Popular" />
+          <EntitySet Name="Douban_Movie_UpdateLog" EntityType="MovieWarehouseModel.Douban_Movie_UpdateLog" />
+          <EntitySet Name="Douban_People_Contact" EntityType="MovieWarehouseModel.Douban_People_Contact" />
+          <EntitySet Name="Douban_People_ID" EntityType="MovieWarehouseModel.Douban_People_ID" />
+          <EntitySet Name="Douban_Search_Celeb" EntityType="MovieWarehouseModel.Douban_Search_Celeb" />
+          <EntitySet Name="Movie_Mine" EntityType="MovieWarehouseModel.Movie_Mine" />
+          <EntitySet Name="Movie_Store" EntityType="MovieWarehouseModel.Movie_Store" />
+          </EntityContainer>
+        <EntityType Name="Douban_Celeb_UpdateLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="CelebID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Douban_Celebrity_ID">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Initialized" Type="Boolean" />
+          <Property Name="Read" Type="Boolean" />
+          <Property Name="FZF" Type="Boolean" />
+          <Property Name="ReadMovie" Type="Boolean" />
+          <Property Name="Movie" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Split" Type="Boolean" />
+          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Name_Original" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Douban_Celebrity_Info">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Name_Original" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Constellation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Day_Birth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Day_Death" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Born_Place" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Profession" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Name_Aka" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Name_Aka_Original" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Family_Member" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IMDb" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Website" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Douban_Movie_Country">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Douban_Movie_Genre">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="Genre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Count" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Douban_Movie_ID">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Initialized" Type="Boolean" />
+          <Property Name="Read" Type="Boolean" />
+          <Property Name="FZF" Type="Boolean" />
+          <Property Name="Rating_Count" Type="Int32" />
+          <Property Name="Directors" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Writers" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Casts" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Split" Type="Boolean" />
+          <Property Name="Collection" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Douban_Movie_Info">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Title_Original" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Title_Aka" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Year" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Directors" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Writers" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Casts" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Genres" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Countries" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Languages" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Pubdates" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Durations" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IMDb" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Summary" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rating" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Rating_Count" Type="Int32" />
+          <Property Name="Star_5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Star_4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Star_3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Star_2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Star_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Seasons_Count" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Current_Season" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Episodes_Count" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Douban_Movie_Popular">
+          <Key>
+            <PropertyRef Name="PID" />
+          </Key>
+          <Property Name="PID" Type="Guid" Nullable="false" />
+          <Property Name="ID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Url" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Rate" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Cover" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Cover_X" Type="Int32" />
+          <Property Name="Cover_Y" Type="Int32" />
+          <Property Name="Playable" Type="Boolean" />
+          <Property Name="Is_New" Type="Boolean" />
+          <Property Name="Order" Type="Int32" />
+          <Property Name="Time" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Douban_Movie_UpdateLog">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="MovieID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Time" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Douban_People_Contact">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="PeopleID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ContactID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Douban_People_ID">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contacted" Type="Boolean" Nullable="false" />
+          <Property Name="RevContacted" Type="Boolean" Nullable="false" />
+          <Property Name="FZF" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Douban_Search_Celeb">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Keyword" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Douban" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Read" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Movie_Mine">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tag" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rating" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Movie_Store">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="SubjectID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="FileName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Size" Type="Double" />
+          <Property Name="Drive" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MovieWarehouseModelStoreContainer" CdmEntityContainer="MovieWarehouseEntities">
+          <FunctionImportMapping FunctionImportName="P_SplitPagesQuery" FunctionName="MovieWarehouseModel.Store.P_SplitPagesQuery" />
+          <FunctionImportMapping FunctionImportName="PROC_Douban_Movie_Pager" FunctionName="MovieWarehouseModel.Store.PROC_Douban_Movie_Pager" />
+          <FunctionImportMapping FunctionImportName="PROC_Mine_Movie_Pager" FunctionName="MovieWarehouseModel.Store.PROC_Mine_Movie_Pager" />
+          <EntitySetMapping Name="Douban_Celeb_UpdateLog">
+            <EntityTypeMapping TypeName="MovieWarehouseModel.Douban_Celeb_UpdateLog">
+              <MappingFragment StoreEntitySet="Douban_Celeb_UpdateLog">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="CelebID" ColumnName="CelebID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Douban_Celebrity_ID">
+            <EntityTypeMapping TypeName="MovieWarehouseModel.Douban_Celebrity_ID">
+              <MappingFragment StoreEntitySet="Douban_Celebrity_ID">
+                <ScalarProperty Name="Name_Original" ColumnName="Name_Original" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Split" ColumnName="Split" />
+                <ScalarProperty Name="Movie" ColumnName="Movie" />
+                <ScalarProperty Name="ReadMovie" ColumnName="ReadMovie" />
+                <ScalarProperty Name="FZF" ColumnName="FZF" />
+                <ScalarProperty Name="Read" ColumnName="Read" />
+                <ScalarProperty Name="Initialized" ColumnName="Initialized" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Douban_Celebrity_Info">
+            <EntityTypeMapping TypeName="MovieWarehouseModel.Douban_Celebrity_Info">
+              <MappingFragment StoreEntitySet="Douban_Celebrity_Info">
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="IMDb" ColumnName="IMDb" />
+                <ScalarProperty Name="Family_Member" ColumnName="Family_Member" />
+                <ScalarProperty Name="Name_Aka_Original" ColumnName="Name_Aka_Original" />
+                <ScalarProperty Name="Name_Aka" ColumnName="Name_Aka" />
+                <ScalarProperty Name="Profession" ColumnName="Profession" />
+                <ScalarProperty Name="Born_Place" ColumnName="Born_Place" />
+                <ScalarProperty Name="Day_Death" ColumnName="Day_Death" />
+                <ScalarProperty Name="Day_Birth" ColumnName="Day_Birth" />
+                <ScalarProperty Name="Constellation" ColumnName="Constellation" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Name_Original" ColumnName="Name_Original" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Douban_Movie_Country">
+            <EntityTypeMapping TypeName="MovieWarehouseModel.Douban_Movie_Country">
+              <MappingFragment StoreEntitySet="Douban_Movie_Country">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Douban_Movie_Genre">
+            <EntityTypeMapping TypeName="MovieWarehouseModel.Douban_Movie_Genre">
+              <MappingFragment StoreEntitySet="Douban_Movie_Genre">
+                <ScalarProperty Name="Count" ColumnName="Count" />
+                <ScalarProperty Name="Genre" ColumnName="Genre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Douban_Movie_ID">
+            <EntityTypeMapping TypeName="MovieWarehouseModel.Douban_Movie_ID">
+              <MappingFragment StoreEntitySet="Douban_Movie_ID">
+                <ScalarProperty Name="Collection" ColumnName="Collection" />
+                <ScalarProperty Name="Split" ColumnName="Split" />
+                <ScalarProperty Name="Casts" ColumnName="Casts" />
+                <ScalarProperty Name="Writers" ColumnName="Writers" />
+                <ScalarProperty Name="Directors" ColumnName="Directors" />
+                <ScalarProperty Name="Rating_Count" ColumnName="Rating_Count" />
+                <ScalarProperty Name="FZF" ColumnName="FZF" />
+                <ScalarProperty Name="Read" ColumnName="Read" />
+                <ScalarProperty Name="Initialized" ColumnName="Initialized" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Douban_Movie_Info">
+            <EntityTypeMapping TypeName="MovieWarehouseModel.Douban_Movie_Info">
+              <MappingFragment StoreEntitySet="Douban_Movie_Info">
+                <ScalarProperty Name="Episodes_Count" ColumnName="Episodes_Count" />
+                <ScalarProperty Name="Current_Season" ColumnName="Current_Season" />
+                <ScalarProperty Name="Seasons_Count" ColumnName="Seasons_Count" />
+                <ScalarProperty Name="Star_1" ColumnName="Star_1" />
+                <ScalarProperty Name="Star_2" ColumnName="Star_2" />
+                <ScalarProperty Name="Star_3" ColumnName="Star_3" />
+                <ScalarProperty Name="Star_4" ColumnName="Star_4" />
+                <ScalarProperty Name="Star_5" ColumnName="Star_5" />
+                <ScalarProperty Name="Rating_Count" ColumnName="Rating_Count" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="IMDb" ColumnName="IMDb" />
+                <ScalarProperty Name="Durations" ColumnName="Durations" />
+                <ScalarProperty Name="Pubdates" ColumnName="Pubdates" />
+                <ScalarProperty Name="Languages" ColumnName="Languages" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Countries" ColumnName="Countries" />
+                <ScalarProperty Name="Genres" ColumnName="Genres" />
+                <ScalarProperty Name="Casts" ColumnName="Casts" />
+                <ScalarProperty Name="Writers" ColumnName="Writers" />
+                <ScalarProperty Name="Directors" ColumnName="Directors" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Title_Aka" ColumnName="Title_Aka" />
+                <ScalarProperty Name="Title_Original" ColumnName="Title_Original" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Douban_Movie_Popular">
+            <EntityTypeMapping TypeName="MovieWarehouseModel.Douban_Movie_Popular">
+              <MappingFragment StoreEntitySet="Douban_Movie_Popular">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Is_New" ColumnName="Is_New" />
+                <ScalarProperty Name="Playable" ColumnName="Playable" />
+                <ScalarProperty Name="Cover_Y" ColumnName="Cover_Y" />
+                <ScalarProperty Name="Cover_X" ColumnName="Cover_X" />
+                <ScalarProperty Name="Cover" ColumnName="Cover" />
+                <ScalarProperty Name="Rate" ColumnName="Rate" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Douban_Movie_UpdateLog">
+            <EntityTypeMapping TypeName="MovieWarehouseModel.Douban_Movie_UpdateLog">
+              <MappingFragment StoreEntitySet="Douban_Movie_UpdateLog">
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="MovieID" ColumnName="MovieID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Douban_People_Contact">
+            <EntityTypeMapping TypeName="MovieWarehouseModel.Douban_People_Contact">
+              <MappingFragment StoreEntitySet="Douban_People_Contact">
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="PeopleID" ColumnName="PeopleID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Douban_People_ID">
+            <EntityTypeMapping TypeName="MovieWarehouseModel.Douban_People_ID">
+              <MappingFragment StoreEntitySet="Douban_People_ID">
+                <ScalarProperty Name="FZF" ColumnName="FZF" />
+                <ScalarProperty Name="RevContacted" ColumnName="RevContacted" />
+                <ScalarProperty Name="Contacted" ColumnName="Contacted" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Douban_Search_Celeb">
+            <EntityTypeMapping TypeName="MovieWarehouseModel.Douban_Search_Celeb">
+              <MappingFragment StoreEntitySet="Douban_Search_Celeb">
+                <ScalarProperty Name="Read" ColumnName="Read" />
+                <ScalarProperty Name="Douban" ColumnName="Douban" />
+                <ScalarProperty Name="Keyword" ColumnName="Keyword" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movie_Mine">
+            <EntityTypeMapping TypeName="MovieWarehouseModel.Movie_Mine">
+              <MappingFragment StoreEntitySet="Movie_Mine">
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Movie_Store">
+            <EntityTypeMapping TypeName="MovieWarehouseModel.Movie_Store">
+              <MappingFragment StoreEntitySet="Movie_Store">
+                <ScalarProperty Name="Drive" ColumnName="Drive" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SubjectID" ColumnName="SubjectID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
