@@ -50,11 +50,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\给string加个判断空字符串的扩展方法\Jinx.J007.给string加个判断空字符串的扩展方法.csproj">
+    <ProjectReference Include="..\Jinx.J007.给string加个判断空字符串的扩展方法\Jinx.J007.给string加个判断空字符串的扩展方法.csproj">
       <Project>{f90af97b-e374-4efa-9232-2105a672a232}</Project>
       <Name>Jinx.J007.给string加个判断空字符串的扩展方法</Name>
     </ProjectReference>
-    <ProjectReference Include="..\让List自定义排序规则\Jinx.J008.让List自定义排序规则.csproj">
+    <ProjectReference Include="..\Jinx.J008.让List自定义排序规则\Jinx.J008.让List自定义排序规则.csproj">
       <Project>{3b9ff5f6-93ee-4fab-b086-78af5effd4c0}</Project>
       <Name>Jinx.J008.让List自定义排序规则</Name>
     </ProjectReference>
