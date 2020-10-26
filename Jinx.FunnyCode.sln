@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jinx.J007.给string加个�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jinx.J008.让List自定义排序规则", "Jinx.J008.让List自定义排序规则\Jinx.J008.让List自定义排序规则.csproj", "{3B9FF5F6-93EE-4FAB-B086-78AF5EFFD4C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jinx.J009.桶排序", "Jinx.J009.桶排序\Jinx.J009.桶排序.csproj", "{EB206272-46C4-4C18-A3D4-D7E7AD7F9B57}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{3B9FF5F6-93EE-4FAB-B086-78AF5EFFD4C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B9FF5F6-93EE-4FAB-B086-78AF5EFFD4C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B9FF5F6-93EE-4FAB-B086-78AF5EFFD4C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB206272-46C4-4C18-A3D4-D7E7AD7F9B57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB206272-46C4-4C18-A3D4-D7E7AD7F9B57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB206272-46C4-4C18-A3D4-D7E7AD7F9B57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB206272-46C4-4C18-A3D4-D7E7AD7F9B57}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
