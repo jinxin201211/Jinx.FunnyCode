@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>StackupPictureViewer</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+  <style>
+    html {
+      height: 100%;
+    }
+
+    body {
+      background-image: linear-gradient(120deg, #6fc9b7, #093637);
+    }
+
+    .container {
+      position: relative;
+      height: 500px;
+      width: 1200px;
+      margin: 0 auto;
+    }
+
+    .container>.card {
+      position: absolute;
+      width: 400px;
+      /* height: 200px; */
+      bottom: 0;
+      left: 0;
+      cursor: pointer;
+      transition-property: left, transform;
+      transition-duration: .3s;
+      transition-timing-function: ease-in-out;
+      /* transform-origin: center bottom; */
+    }
+
+    .container>.card>img {
+      width: 100%;
+    }
+
+    .container>.card>.text {
+      line-height: 50px;
+      text-align: center;
+      font-size: 18px;
+      background: #071580;
+      color: #ffffff;
+    }
+
+    .navigation {
+      list-style: none;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .navigation>.dot {
+      display: inline-block;
+      width: .5rem;
+      height: .5rem;
+      margin: .5rem;
+      border: .125rem solid #fff;
+      background-color: #fff;
+      border-radius: 100%;
+      cursor: pointer;
+    }
+
+    .navigation>.dot.active {
+      background: transparent;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <div class="card" v-for="item in List"
+        :style="{'left': item.Left + 'px', 'z-index': item.ZIndex,'opacity': item.Opacity, 'transform': 'scale('+ item.Scale +')'}"
+        @click="handleSetCenter(item.Index)">
+        <div class="text" v-text="item.Index"></div>
+        <img :src="item.Pic" />
+      </div>
+    </div>
+    <div class="navigation">
+      <li class="dot" v-for="item in List" :class="{'active': item.SlideIndex === Center}" @click="handleSetCenter(item.Index)"></li>
+    </div>
+  </div>
+
+  <script>
+    var myVue = new Vue({
+      el: "#app",
+      data: {
+        Pictures: ['https://img.zcool.cn/community/019abe5fb1d7be11013ee04d874619.jpg@1280w_1l_0o_100sh.jpg', 'https://img.zcool.cn/community/01ec5a5fb1d63811013fdcc7f6622b.jpg@1280w_1l_0o_100sh.jpg', 'https://img.zcool.cn/community/01a5025fb1d63111013ee04d79ba12.jpg@1280w_1l_0o_100sh.jpg', 'https://img.zcool.cn/community/01bfaa5fb1d63a11013ee04d14b829.jpg@1280w_1l_2o_100sh.jpg', 'https://img.zcool.cn/community/01c86a5fb1d63a11013fdcc7c27f12.jpg@1280w_1l_2o_100sh.jpg', 'https://img.zcool.cn/community/0147095fb1d63411013ee04df8df4f.jpg@1280w_1l_2o_100sh.jpg', 'https://img.zcool.cn/community/010a385fb1d7c511013fdcc71b536d.jpg@1280w_1l_2o_100sh.jpg', 'https://img.zcool.cn/community/01942e5fb1d63511013fdcc7c5030a.jpg@1280w_1l_2o_100sh.jpg', 'https://img.zcool.cn/community/0121b35fb1d63611013fdcc79a84d5.jpg@1280w_1l_2o_100sh.jpg', 'https://img.zcool.cn/community/01dc945fb1d63a11013ee04dcf9b2f.jpg@1280w_1l_2o_100sh.jpg', 'https://img.zcool.cn/community/019c8e5fb1d6fd11013fdcc7bdcf8f.jpg@1280w_1l_2o_100sh.jpg', 'https://img.zcool.cn/community/0119035fb1d9ef11013fdcc78f8714.jpg@1280w_1l_2o_100sh.jpg'],
+        List: [],
+        Center: 0,
+        ContainerWidth: 1200,
+        CardWidth: 400,
+        LeftStep: -1,
+        OpacityStep: 0.1,
+        ScaleStep: 0.05
+      },
+      mounted() {
+        this.Center = Math.floor(this.Pictures.length / 2) - 1;
+        this.LeftStep = (this.ContainerWidth - this.CardWidth) / (this.Pictures.length - 1);
+        for (let i = 0; i < this.Pictures.length; i++) {
+          this.List.push({
+            Pic: this.Pictures[i],
+            Index: i,
+            SlideIndex: i,
+            Left: '0',
+            Opacity: '1',
+            Scale: '1',
+            ZIndex: 0
+          });
+        }
+
+        for (let i = 0; i < this.List.length; i++) {
+          this.List[i].Left = this.LeftStep * this.List[i].SlideIndex;
+          this.List[i].ZIndex = 100 - Math.abs(this.List[i].SlideIndex - this.Center) + 1;
+          this.List[i].Opacity = 1 - Math.abs(this.List[i].SlideIndex - this.Center) * this.OpacityStep;
+          this.List[i].Scale = 1 - Math.abs(this.List[i].SlideIndex - this.Center) * this.ScaleStep;
+        }
+      },
+      methods: {
+        handleSetCenter(index) {
+          console.log(index);
+          // let flag = false;
+          // for (let i = index; i != index && !flag; i = (i + 1) % this.Pictures.length, flag = true) {
+          //   this.List[i].SlideIndex = (this.Center + i - index) % this.Pictures.length;
+          //   this.List[i].ZIndex = 100 - Math.abs(this.List[i].SlideIndex - this.Center) + 1;
+          //   this.List[i].Opacity = 1 - Math.abs(this.List[i].SlideIndex - this.Center) * this.OpacityStep;
+          //   this.List[i].Scale = 1 - Math.abs(this.List[i].SlideIndex - this.Center) * this.ScaleStep;
+          // }
+          let cur_index = this.List.find(p => p.SlideIndex === this.Center).Index;
+          console.log(this.List.map(p => p.SlideIndex).join(','))
+          for (let i = 0; i < this.List.length; i++) {
+            this.List[i].SlideIndex = (this.List[i].SlideIndex - (index - cur_index) + this.Pictures.length) % this.Pictures.length;
+            this.List[i].Left = this.LeftStep * this.List[i].SlideIndex;
+            this.List[i].ZIndex = 100 - Math.abs(this.List[i].SlideIndex - this.Center) + 1;
+            this.List[i].Opacity = 1 - Math.abs(this.List[i].SlideIndex - this.Center) * this.OpacityStep;
+            this.List[i].Scale = 1 - Math.abs(this.List[i].SlideIndex - this.Center) * this.ScaleStep;
+          }
+          console.log(this.List.map(p => p.SlideIndex))
+          console.log(this.List.map(p => p.SlideIndex).join(','))
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>

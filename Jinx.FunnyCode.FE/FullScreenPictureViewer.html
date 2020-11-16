@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>StackupPictureViewer</title>
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+  <style>
+    html,
+    body,
+    #app {
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    .display {
+      height: 100%;
+      background-position: center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      transition: all .5s ease-in-out;
+    }
+
+    .navigation {
+      text-align: center;
+      font-size: 0;
+      position: fixed;
+      width: 100%;
+      bottom: 50px;
+      background: rgba(255, 255, 255, 0.5);
+      padding: 15px 0;
+
+    }
+
+    .navigation>.dot {
+      width: 100px;
+      display: inline-block;
+      border-style: solid;
+      border-width: 3px;
+      border-color: transparent;
+      cursor: pointer;
+      transition: all .5s ease-in-out;
+    }
+
+    .navigation>.dot.active {
+      border-color: yellow;
+    }
+
+    .navigation>.dot>img {
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div class="display" :style="{'background-image': 'url(\''+ List[Index] +'\')'}"></div>
+    <div class="navigation">
+      <div class="dot" v-for="(item, index) in List" :class="{'active': Index === index}" @mouseenter="Index = index">
+        <img :src="item" />
+      </div>
+    </div>
+  </div>
+
+  <script>
+    var myVue = new Vue({
+      el: "#app",
+      data: {
+        List: ['https://img.zcool.cn/community/019abe5fb1d7be11013ee04d874619.jpg@1280w_1l_0o_100sh.jpg', 'https://img.zcool.cn/community/01ec5a5fb1d63811013fdcc7f6622b.jpg@1280w_1l_0o_100sh.jpg', 'https://img.zcool.cn/community/01a5025fb1d63111013ee04d79ba12.jpg@1280w_1l_0o_100sh.jpg', 'https://img.zcool.cn/community/01bfaa5fb1d63a11013ee04d14b829.jpg@1280w_1l_2o_100sh.jpg', 'https://img.zcool.cn/community/01c86a5fb1d63a11013fdcc7c27f12.jpg@1280w_1l_2o_100sh.jpg', 'https://img.zcool.cn/community/0147095fb1d63411013ee04df8df4f.jpg@1280w_1l_2o_100sh.jpg', 'https://img.zcool.cn/community/010a385fb1d7c511013fdcc71b536d.jpg@1280w_1l_2o_100sh.jpg', 'https://img.zcool.cn/community/01942e5fb1d63511013fdcc7c5030a.jpg@1280w_1l_2o_100sh.jpg', 'https://img.zcool.cn/community/0121b35fb1d63611013fdcc79a84d5.jpg@1280w_1l_2o_100sh.jpg', 'https://img.zcool.cn/community/01dc945fb1d63a11013ee04dcf9b2f.jpg@1280w_1l_2o_100sh.jpg', 'https://img.zcool.cn/community/019c8e5fb1d6fd11013fdcc7bdcf8f.jpg@1280w_1l_2o_100sh.jpg', 'https://img.zcool.cn/community/0119035fb1d9ef11013fdcc78f8714.jpg@1280w_1l_2o_100sh.jpg'],
+        Index: 0
+      },
+      mounted() {
+      },
+      methods: {
+      },
+    })
+  </script>
+</body>
+
+</html>
